@@ -1,8 +1,18 @@
+body {
+  background-color: #000;
+}
+
 #root {
-  max-width: 1280px;
+  max-width: 480px;
+  width: 100%;
+  height: 100vh;
   margin: 0 auto;
-  padding: 2rem;
+  /* padding: 2rem; */
   text-align: center;
+  background-color: #636D86;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 10px;
 }
 
 .logo {

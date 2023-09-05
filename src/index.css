@@ -1,5 +1,27 @@
+
+@font-face {
+  font-family: 'Roboto';
+  src: url(assets/fonts/Roboto/Roboto-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url(assets/fonts/Roboto/Roboto-Bold.ttf);
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url(assets/fonts/Roboto/Roboto-Black.ttf);
+  font-weight: 900; /* Bolder font weight */
+  font-style: normal;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; */
   line-height: 1.5;
   font-weight: 400;
 
@@ -8,10 +30,20 @@
   background-color: #636D86;
 
   font-synthesis: none;
+  font-family: Roboto;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --color-gold: #C79310;
+  --color-gray: #818181;
+  --color-dark-blue: #283452;
+}
+
+/* Using the imported font in your styles */
+body {
+  font-family: 'Roboto', sans-serif;
 }
 
 a {

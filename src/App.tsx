@@ -1,20 +1,19 @@
 import React, { useState } from 'react'
 import './App.css'
 
-import ScoreCounter from './components/score-counter/ScoreCounter'
 import { ScoreProvider } from './utils/ScoreContext'
 
-// export const ScoreContext = React.createContext(0)
+import ScoreCounter from './components/score-counter/ScoreCounter'
+import ClickerArea from './components/clicker-area/ClickerArea'
+
 
 function App() {
-
-  // const [score, setScore] = useState(1222)
-
 
   return (
     <>
       <ScoreProvider>
         <ScoreCounter />
+        <ClickerArea />
       </ScoreProvider>
     </>
   )

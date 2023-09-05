@@ -15,6 +15,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/assets': '/src/assets', // Alias for assets directory
-    },
+      '@': '/src', // Adjust the path as needed
+    }
   },
 })

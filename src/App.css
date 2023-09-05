@@ -12,6 +12,7 @@ body {
   background-color: #636D86;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 5rem auto;
   gap: 10px;
 }
 

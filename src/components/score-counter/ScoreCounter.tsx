@@ -1,4 +1,3 @@
-import { useState, useContext } from 'react'
 import './ScoreCounter.scss'
 
 import { useScore, useScoreUpdate } from '../../utils/ScoreContext'

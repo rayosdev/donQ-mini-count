@@ -1,0 +1,30 @@
+.bubble-image {
+
+    &__container {
+        background: var(--color-yellow);
+        width: 82px;
+        height: 82px;
+        border-radius: 50%;
+        position: relative;
+        grid-column: 1/3;
+        grid-row: 1/3;
+        top: -0.2px;
+    }
+    
+    &__image-frame {
+        position: relative;
+        overflow: hidden;
+        width: 53px;
+        height: 68px;
+        left: 15px;
+        top: -6px;
+        user-select: none;
+    }
+
+    &__hand-image {
+        width: 100%;
+        height: 100%;
+        object-fit: none;
+        object-position: -6px -40px;
+    }
+}

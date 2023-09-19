@@ -1,13 +1,13 @@
 import './ClickerArea.scss'
 
-import ClickerElementOne from './ClickElementOne/ClickerElementOne'
+import ClickerElementOne from './click-element-one/ClickerElementOne'
 
 
 function ClickerArea(){
 
     return (
         <div className="clicker-area clicker-area__container">
-            <ClickerElementOne></ClickerElementOne>
+            <ClickerElementOne />
         </div>
     )
 }

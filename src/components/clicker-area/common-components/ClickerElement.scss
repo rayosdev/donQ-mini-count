@@ -1,0 +1,8 @@
+.clicker-element {
+    &__container {
+        // border: solid red 2px;
+        display: grid;
+        grid-template-columns: 41px 41px 170px 30%;
+        grid-template-rows: 35% 65%;
+    }
+}

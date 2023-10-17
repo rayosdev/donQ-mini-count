@@ -1,43 +1,53 @@
-import create from "zustand"
-import { persist } from "zustand/middleware"
+import { create, StateCreator } from "zustand";
+import { persist, devtools } from "zustand/middleware";
 
 type TClickElementItem = {
-    elements: number[]
     currentEarnings: number
     currentSpeed: number
     currentRunProgress: number
     upgradeLevel: () => number
     upgradeCost: () => number
-    changeText: () => void
     buffs: (() => void)[]
-    numberInFocus: number,
-    test: string
+    numberInFocus: number
 }
 
-export const ClickElementsStore = create(
-    persist(
-        (set) => ({
-        elements: [1, 2, 3],
-        currentEarnings: 0.25,
-        currentSpeed: 0.01,
-        currentRunProgress: 0,
-        upgradeLevel() {
-            return 0
-        },
-        upgradeCost() {
-            return 0
-        },
-        changeText() {
-            set((state: TClickElementItem) => ({
-                ...state,
-                test: "mhmmm"
-            }))
-        },
-        buffs: [() => {}],
-        numberInFocus: 0,
-        }),
-        {
-        name: "click-element-store",
-        }
-    )
+type TClickElementsStore = {
+    items: TClickElementItem[];
+    addItem: (item: TClickElementItem) => void;
+};
+
+const createStore: StateCreator<TClickElementsStore> = (set) => ({
+    items: [],
+    addItem: (item: TClickElementItem) =>
+        set((state) => ({
+            items: [...state.items, item],
+        })),
+});
+
+const options = {
+    name: 'click-element-store',
+};
+
+export const ClickElementsStore = create<TClickElementsStore>(
+    devtools(persist(createStore, options)) as any
 )
+
+export const addItemToStore = (addItemFunction: (item: TClickElementItem) => void, item?: Partial<TClickElementItem>) => {
+    const defaultItem = {
+        currentEarnings: 2,
+        currentSpeed: 0,
+        currentRunProgress: 0,
+        upgradeLevel: () => 0,
+        upgradeCost: () => 0,
+        buffs: [],
+        numberInFocus: 0,
+    };
+
+    // Merge the default values with the provided values
+    const newItem = {
+        ...defaultItem,
+        ...item
+    };
+
+    addItemFunction(newItem);
+};

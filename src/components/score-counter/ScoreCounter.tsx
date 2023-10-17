@@ -1,17 +1,15 @@
 import './ScoreCounter.scss'
 
-import { useScore, useScoreUpdate } from '../../utils/ScoreContext'
+import { GameStore } from '../../store/GameStore';
 
 function ScoreCounter() {
 
-  const score = useScore()
+  const gameStore = GameStore()
+  const score = gameStore.score
   const countString = score.toString().padStart(8, '0');
   
-  const updateScore = useScoreUpdate()
 
-  const handleCounterClick = () => {
-    updateScore()
-  };
+  const updateScore = gameStore.updateScore
 
   const returNumbersAsHTML = (numberString: string): JSX.Element[] => {
     let nonPaddedNumberFound = false
@@ -23,7 +21,7 @@ function ScoreCounter() {
 
   return (
     <>
-    <div className="score-counter score-counter__container" onClick={handleCounterClick}>
+    <div className="score-counter score-counter__container" onClick={() => updateScore(+10)}>
       <div className="score-counter__numbers">
         {returNumbersAsHTML(countString)}
         <i>¤</i></div>

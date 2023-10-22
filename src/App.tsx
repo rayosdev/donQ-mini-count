@@ -16,9 +16,9 @@ function App() {
       <div>
         <button onClick={() => addItemToStore(addItem)}>ADD</button>
         {elementsStore && elementsStore.items.map((item, index) => (
-          <div>
+          <div key={'clickAreaContainer' + index}>
             <h3 key={index}>Earnings: {item.currentEarnings}</h3>
-            <ClickerArea />
+            <ClickerArea index={index}/>
           </div>
         ))}
       </div>

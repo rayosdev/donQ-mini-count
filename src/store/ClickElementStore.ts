@@ -34,8 +34,8 @@ export const ClickElementsStore = create<TClickElementsStore>(
 
 export const addItemToStore = (addItemFunction: (item: TClickElementItem) => void, item?: Partial<TClickElementItem>) => {
     const defaultItem = {
-        currentEarnings: 2,
-        currentSpeed: 0,
+        currentEarnings: 3,
+        currentSpeed: 0.1,
         currentRunProgress: 0,
         upgradeLevel: () => 0,
         upgradeCost: () => 0,

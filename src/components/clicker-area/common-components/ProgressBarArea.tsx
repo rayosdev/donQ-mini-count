@@ -1,19 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './ProgressBarArea.scss'
 
 
-function ProgressBarArea(){
+import { ClickElementsStore } from '../../../store/ClickElementStore'
 
-    const [progress, setProgress] = useState(90) 
+interface IProgressBarArea {
+    index: number;
+}
+
+function ProgressBarArea(props: IProgressBarArea){
+
+    const [progress, setProgress] = useState(90)
+    const elementsStore = ClickElementsStore()
+
+    const thisElement = elementsStore.items[props.index]
+
+    useEffect(() => {
+      console.log("test", thisElement.currentRunProgress)
+      setProgress(thisElement.currentRunProgress)
+    }, [thisElement.currentRunProgress])
+    
+    useEffect(() => {
+      console.log("first run: ", thisElement.currentRunProgress, " - ", props.index)
+      thisElement.currentRunProgress = 10 * props.index
+    }, [])
+    
 
     const stripes = Array.from({ length: 25 }, (_, index) => (
         <div className='progress-bar-element__strip' key={index}></div>
     ));
 
-
+    
 
     return (
-        <div className="progress-bar-area progress-bar-area__container">
+        <div className="progress-bar-area progress-bar-area__container" data-index={props.index}>
             <div className="progress-bar-area__level-up-progress level-up-progress level-up-progress__container">
                 <div className="level-up-progress__bar"></div>
             </div>

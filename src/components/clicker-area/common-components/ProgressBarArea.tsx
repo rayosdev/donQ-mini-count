@@ -13,16 +13,38 @@ function ProgressBarArea(props: IProgressBarArea){
     const [progress, setProgress] = useState(90)
     const elementsStore = ClickElementsStore()
 
+    useEffect(() => {
+        thisElement.currentSpeed = 0.5
+        startTimerRun()
+    }, [])
+    
+
+    
+    let timerRunRef: number | null = null
+    const startTimerRun = () => {
+        if(timerRunRef !== null) return
+        timerRunRef = setInterval(() => {
+            thisElement.currentRunProgress += thisElement.currentSpeed
+            // console.log(thisElement.currentRunProgress)
+            setProgress(thisElement.currentRunProgress)
+            if(thisElement.currentRunProgress >= 100){
+                // console.log("progress is or is above 100", progress)
+                thisElement.currentRunProgress = 0
+            }
+        }, 10)
+    }
+
     const thisElement = elementsStore.items[props.index]
 
     useEffect(() => {
-      console.log("test", thisElement.currentRunProgress)
+    //   console.log("test", progress)
       setProgress(thisElement.currentRunProgress)
-    }, [thisElement.currentRunProgress])
+    }, [progress])
     
     useEffect(() => {
-      console.log("first run: ", thisElement.currentRunProgress, " - ", props.index)
-      thisElement.currentRunProgress = 10 * props.index
+    //   console.log("first run: ", thisElement.currentRunProgress, " - ", props.index)
+      thisElement.currentRunProgress = 25 * props.index
+    //   console.log("thisElement: ", thisElement)
     }, [])
     
 

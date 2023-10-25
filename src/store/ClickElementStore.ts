@@ -9,6 +9,7 @@ type TClickElementItem = {
     upgradeCost: () => number
     buffs: (() => void)[]
     numberInFocus: number
+    lastTick: number | null
 }
 
 type TClickElementsStore = {
@@ -41,6 +42,7 @@ export const addItemToStore = (addItemFunction: (item: TClickElementItem) => voi
         upgradeCost: () => 0,
         buffs: [],
         numberInFocus: 0,
+        lastTick: null,
     };
 
     // Merge the default values with the provided values

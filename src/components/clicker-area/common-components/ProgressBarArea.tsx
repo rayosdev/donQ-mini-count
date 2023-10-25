@@ -13,28 +13,40 @@ function ProgressBarArea(props: IProgressBarArea){
     const [progress, setProgress] = useState(90)
     const elementsStore = ClickElementsStore()
 
+    const thisElement = elementsStore.items[props.index]
+    
     useEffect(() => {
         thisElement.currentSpeed = 0.5
         startTimerRun()
     }, [])
-    
 
-    
-    let timerRunRef: number | null = null
+    let timerRunRef: number | null = null;
+    let lastTime: number = Math.floor(Date.now() / 10); // Get initial Unix time in seconds
+  
     const startTimerRun = () => {
-        if(timerRunRef !== null) return
-        timerRunRef = setInterval(() => {
-            thisElement.currentRunProgress += thisElement.currentSpeed
-            // console.log(thisElement.currentRunProgress)
-            setProgress(thisElement.currentRunProgress)
-            if(thisElement.currentRunProgress >= 100){
-                // console.log("progress is or is above 100", progress)
-                thisElement.currentRunProgress = 0
-            }
-        }, 10)
+      if (timerRunRef !== null) return
+      const animate = () => {
+        const currentTime = Math.floor(Date.now() / 10)
+        const deltaTime = currentTime - lastTime
+        
+        if (deltaTime >= 1) { // Update every 1 second
+          lastTime = currentTime
+          thisElement.currentRunProgress += thisElement.currentSpeed * deltaTime
+          
+          if (thisElement.currentRunProgress >= 100) {
+            // console.log("progress is or is above 100", thisElement.currentRunProgress)
+            thisElement.currentRunProgress = 0
+          }
+          
+          setProgress(thisElement.currentRunProgress)
+        }
+        
+        timerRunRef = requestAnimationFrame(animate)
+      }
+      
+      animate()
     }
 
-    const thisElement = elementsStore.items[props.index]
 
     useEffect(() => {
     //   console.log("test", progress)
@@ -43,7 +55,7 @@ function ProgressBarArea(props: IProgressBarArea){
     
     useEffect(() => {
     //   console.log("first run: ", thisElement.currentRunProgress, " - ", props.index)
-      thisElement.currentRunProgress = 25 * props.index
+    //   thisElement.currentRunProgress = 25 * props.index
     //   console.log("thisElement: ", thisElement)
     }, [])
     

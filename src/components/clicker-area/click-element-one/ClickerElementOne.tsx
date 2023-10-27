@@ -16,7 +16,7 @@ function ClickerElementOne(props: IClickerElementOne){
     return (
         <>
             <div className="clicker-element clicker-element__container clicker-element-one clicker-element-one__container">
-                <ImageBubble />
+                <ImageBubble index={props.index} />
                 <ProgressBarArea index={props.index} />
                 <button onClick={() => addItemToStore(addItem)}>push the button</button>
             </div>

@@ -10,6 +10,7 @@ type TClickElementItem = {
     buffs: (() => void)[]
     numberInFocus: number
     lastTick: number | null
+    isRunning: boolean
 }
 
 type TClickElementsStore = {
@@ -43,6 +44,7 @@ export const addItemToStore = (addItemFunction: (item: TClickElementItem) => voi
         buffs: [],
         numberInFocus: 0,
         lastTick: null,
+        isRunning: false
     };
 
     // Merge the default values with the provided values

@@ -17,7 +17,7 @@ function ProgressBarArea(props: IProgressBarArea){
     
     useEffect(() => {
         thisElement.currentSpeed = 0.5
-        startTimerRun()
+        // startTimerRun()
     }, [])
 
     let timerRunRef: number | null = null;
@@ -36,6 +36,7 @@ function ProgressBarArea(props: IProgressBarArea){
           if (thisElement.currentRunProgress >= 100) {
             // console.log("progress is or is above 100", thisElement.currentRunProgress)
             thisElement.currentRunProgress = 0
+            thisElement.isRunning = false
           }
           
           setProgress(thisElement.currentRunProgress)
@@ -43,8 +44,7 @@ function ProgressBarArea(props: IProgressBarArea){
         
         timerRunRef = requestAnimationFrame(animate)
       }
-      
-      animate()
+      if(thisElement.isRunning) animate()
     }
 
 
@@ -53,11 +53,13 @@ function ProgressBarArea(props: IProgressBarArea){
       setProgress(thisElement.currentRunProgress)
     }, [progress])
     
+
+    const isRunning = ClickElementsStore(state => state.items[props.index].isRunning) as boolean
+
     useEffect(() => {
-    //   console.log("first run: ", thisElement.currentRunProgress, " - ", props.index)
-    //   thisElement.currentRunProgress = 25 * props.index
-    //   console.log("thisElement: ", thisElement)
-    }, [])
+        console.log("run; ", thisElement.isRunning)
+        if(thisElement.isRunning) startTimerRun()
+    }, [thisElement.isRunning])
     
 
     const stripes = Array.from({ length: 25 }, (_, index) => (

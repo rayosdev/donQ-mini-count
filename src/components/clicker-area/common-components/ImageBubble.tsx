@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import handCountImage from '@/assets/graphics/hand-counter.png'
 
 import './ImageBubble.scss'

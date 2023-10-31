@@ -11,7 +11,6 @@ interface IProgressBarArea {
 function ProgressBarArea(props: IProgressBarArea) {
 
     const [progress, setProgress] = useState(90)
-    const elementsStore = ClickElementsStore()
     const { items, updateItem } = ClickElementsStore()
     const thisElement = items[props.index]
 

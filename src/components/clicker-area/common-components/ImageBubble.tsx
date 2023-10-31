@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import handCountImage from '@/assets/graphics/hand-counter.png'
 
 import './ImageBubble.scss'
@@ -10,18 +10,22 @@ interface IClickArea {
 
 function ImageBubble(props: IClickArea){
 
-    const elementsStore = ClickElementsStore()
-    const thisElement = elementsStore.items[props.index]
+    const { items, updateItem } = ClickElementsStore()
+    const thisElement = items[props.index]
     const [randomNumber, setRandomNumber] = useState(0)
-    const isRunning = ClickElementsStore(state => state.items[props.index].isRunning)
+    // const isRunning = ClickElementsStore(state => state.items[props.index].isRunning)
     // console.log(isRunning, " : ", ClickElementsStore(state => state.items[props.index].isRunning)
 
     const handleGenerateRandomNumber = () => {
-      const newRandomNumber = Math.floor(Math.random() * 6)
-      setRandomNumber(newRandomNumber)
-      if(isRunning == false){
-        thisElement.isRunning = true
-      }
+        if(thisElement.isRunning == false){
+            const newRandomNumber = Math.floor(Math.random() * 6)
+            setRandomNumber(newRandomNumber)
+            const speech = new SpeechSynthesisUtterance()
+            speech.text = newRandomNumber.toString()
+            speech.lang = 'de-DE'
+            window.speechSynthesis.speak(speech)
+            updateItem(props.index, { isRunning: true })
+        }
     }
 
     return (

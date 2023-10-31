@@ -16,6 +16,7 @@ type TClickElementItem = {
 type TClickElementsStore = {
     items: TClickElementItem[];
     addItem: (item: TClickElementItem) => void;
+    updateItem: (index: number, newItem: Partial<TClickElementItem>) => void
 };
 
 const createStore: StateCreator<TClickElementsStore> = (set) => ({
@@ -24,6 +25,12 @@ const createStore: StateCreator<TClickElementsStore> = (set) => ({
         set((state) => ({
             items: [...state.items, item],
         })),
+    updateItem: (index: number, newItem: Partial<TClickElementItem>) =>
+        set((state) => {
+            const items = [...state.items]
+            items[index] = { ...items[index], ...newItem }
+            return {items}
+        })
 });
 
 const options = {

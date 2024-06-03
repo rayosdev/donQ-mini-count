@@ -1,5 +1,11 @@
 
-[Mini-count Netlify build](https://flourishing-squirrel-e89150.netlify.app/)
+
+## Netlify build
+### [https://flourishing-squirrel-e89150.netlify.app/](https://flourishing-squirrel-e89150.netlify.app/)
+
+##
+
+![alt text](image.png)
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
